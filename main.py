@@ -39,22 +39,24 @@ print(desired_towels)
 
 #see if the stripe pattern fits into a desired towel size
 for final_towel in desired_towels:
+    print()
+    used_stripes=[]
+    print(final_towel)
     #iterate through all the towel stripe patters, see if first in shorest towel pattern
     for stripe_input in towel_inputs:
         
-
         # if the stripe is a substring of the desired towel
         if stripe_input in final_towel:
-            print(stripe_input)
-            print(final_towel)
             
             #remove the stripe from final towel design
-            final_towel=final_towel.strip(stripe_input)
-            print(final_towel)
+            final_towel = final_towel.replace(stripe_input, "")
             
             #record which stripes were used
-            
-            
+            used_stripes.append(stripe_input)
+        
+    if final_towel== '':
+        print(used_stripes)
+        print('towel filled')
             
             #only if the towel was completed remove the stripes from the list of stripes
             
@@ -64,6 +66,5 @@ for final_towel in desired_towels:
             #print(towel_inputs)
             #towel_inputs.remove(stripe_input)
 
-    
     
     
