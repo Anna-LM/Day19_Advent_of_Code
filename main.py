@@ -32,7 +32,7 @@ f.close()
 
 
 #order towel inputs by lengths
-towel_inputs = sorted(towel_inputs, key=len)
+towel_inputs = sorted(towel_inputs, key=len, reverse=True)
 print(towel_inputs)
 
 #order desired towels by length
