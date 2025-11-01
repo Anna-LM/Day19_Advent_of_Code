@@ -28,6 +28,7 @@ f.close()
 # order desired towel lengths. see how many characters is left in each desired towel design. fill from shortest. 
 
 
+
 #order towel inputs by lengths
 towel_inputs = sorted(towel_inputs, key=len, reverse=True)
 print(towel_inputs)
@@ -40,15 +41,29 @@ print(desired_towels)
 for final_towel in desired_towels:
     #iterate through all the towel stripe patters, see if first in shorest towel pattern
     for stripe_input in towel_inputs:
+        
 
         # if the stripe is a substring of the desired towel
         if stripe_input in final_towel:
             print(stripe_input)
             print(final_towel)
             
+            #remove the stripe from final towel design
+            final_towel=final_towel.strip(stripe_input)
+            print(final_towel)
+            
+            #record which stripes were used
+            
+            
+            
+            #only if the towel was completed remove the stripes from the list of stripes
+            
             #remove the stripe from the list of stripes
-            print(towel_inputs)
-            towel_inputs.remove(stripe_input)
-    #exit that iteration to next stripe substring
+            
+            
+            #print(towel_inputs)
+            #towel_inputs.remove(stripe_input)
+
+    
     
     
