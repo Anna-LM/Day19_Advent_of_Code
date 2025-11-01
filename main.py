@@ -8,7 +8,6 @@ towel_inputs = (f.readline()).strip('\n')
 
 #format the line into a list of each towel option
 towel_inputs=towel_inputs.split(', ')
-print(towel_inputs)
 
 desired_towels=[]
 #make a list of all the final towel designs
@@ -17,8 +16,6 @@ for line in f:
 
 #remove first element which was blank
 desired_towels=desired_towels[1:]
-
-print(desired_towels[1:])
  
 #close file
 f.close()
@@ -38,3 +35,20 @@ print(towel_inputs)
 #order desired towels by length
 desired_towels = sorted(desired_towels, key=len)
 print(desired_towels)
+
+#see if the stripe pattern fits into a desired towel size
+for final_towel in desired_towels:
+    #iterate through all the towel stripe patters, see if first in shorest towel pattern
+    for stripe_input in towel_inputs:
+
+        # if the stripe is a substring of the desired towel
+        if stripe_input in final_towel:
+            print(stripe_input)
+            print(final_towel)
+            
+            #remove the stripe from the list of stripes
+            print(towel_inputs)
+            towel_inputs.remove(stripe_input)
+    #exit that iteration to next stripe substring
+    
+    
