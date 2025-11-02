@@ -60,7 +60,11 @@ for final_towel in desired_towels:
 # Method 2: *** indefinate number of each stripe available ***
 # i was noticing in the previous method that the remaining stripes in the incomplete towels were ones where there was not that individual stripe. so i am going to readjust my method, and start by noting which individual stripes were not available. then for each towel that involved a stripe of that colour, working backwards and seeing if theres a stripe substring including that letter and the one either side in the desired towel, and then two either side etc. 
 # 1. compare all possible stripes with stripe list from input, see which indicidual colours not included
+
+#all the possible colour stripes
 possible_colours = ['w','u','b','r','g'] 
+
+#make a list of the single colour stripes not included in possible stripes
 not_included_towel_colours=[]
 for colour in possible_colours:
     if colour not in towel_inputs:
@@ -76,9 +80,12 @@ for towel in desired_towels:
             complete_towel_counter=complete_towel_counter+1
         else:
             towels_with_stripe_of_interest.append(towel)
+        break
 print(towels_with_stripe_of_interest)
 
 # ** efficiency - remove stripe options that dont include single colour of interest, since can be fulfilled by single towel stripe option
+#           could also remove any longer input strings made up of shorter input strings
+#           each iteration of increading length of checked string, could check for longer strings made of that length substring
 for towel_input in towel_inputs:
     flag = False
     for colour in not_included_towel_colours:
@@ -88,10 +95,29 @@ for towel_input in towel_inputs:
         towel_inputs.remove(towel_input)
 print(towel_input)
 
-
+            
 
 # 3. check stripe options for desired towel: unincluded stripe colour +/- 1 stripe colour, then +/-2, 
+for towel in towels_with_stripe_of_interest:
+    for colour in not_included_towel_colours: 
+        index = towel.find(colour) #only returns first index
+        print()
+        print(towel + ' ' + colour)
+        print(index)
+        if index !=-1:            
+            try:
+                sub_stripe = (towel[index-1:index+1])
+            except:
+                pass
+            try: 
+                print(towel[index:index+2])
+            except:
+                pass                                                    
+                
+   
+
 # * for efficiency, remove any of the towel stripe options that dont include the non-included colour, and remove any towels from desired towels that dont included non-included colour.
 
 
 print(complete_towel_counter)
+    
