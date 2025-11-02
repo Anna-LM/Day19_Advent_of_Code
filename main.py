@@ -60,10 +60,15 @@ for final_towel in desired_towels:
 # Method 2: *** indefinate number of each stripe available ***
 # i was noticing in the previous method that the remaining stripes in the incomplete towels were ones where there was not that individual stripe. so i am going to readjust my method, and start by noting which individual stripes were not available. then for each towel that involved a stripe of that colour, working backwards and seeing if theres a stripe substring including that letter and the one either side in the desired towel, and then two either side etc. 
 # 1. compare all possible stripes with stripe list from input, see which indicidual colours not included
+possible_colours = ['w','u','b','r','g'] 
+print(towel_inputs)
+for colour in possible_colours:
+    if colour not in towel_inputs:
+        print(colour)
+
 # 2. for each desired towel if it includes the indivdal stripe colour not included in the input, then check, if not we know it can be achieved
 # 3. check stripe options for desired towel: unincluded stripe colour +/- 1 stripe colour, then +/-2, 
 # * for efficiency, remove any of the towel stripe options that dont include the non-included colour, and remove any towels from desired towels that dont included non-included colour.
 
 
 print(complete_towel_counter)
-    
