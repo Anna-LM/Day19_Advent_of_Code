@@ -66,8 +66,17 @@ for colour in possible_colours:
     if colour not in towel_inputs:
         not_included_towel_colours.append(colour)
 print(not_included_towel_colours)
-# 2. for each desired towel if it includes the indivdal stripe colour not included in the input, then check, if not we know it can be achieved
 
+# 2. for each desired towel if it includes the indivdal stripe colour not included in the input, then check, if not we know it can be achieved
+towels_with_stripe_of_interest=[]
+for towel in desired_towels:
+    print(towel)
+    for colour in not_included_towel_colours:
+        if colour not in towel:
+            complete_towel_counter=complete_towel_counter+1
+        else:
+            towels_with_stripe_of_interest.append(towel)
+print(towels_with_stripe_of_interest)
 
 # 3. check stripe options for desired towel: unincluded stripe colour +/- 1 stripe colour, then +/-2, 
 # * for efficiency, remove any of the towel stripe options that dont include the non-included colour, and remove any towels from desired towels that dont included non-included colour.
