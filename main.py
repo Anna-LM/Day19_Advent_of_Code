@@ -78,6 +78,18 @@ for towel in desired_towels:
             towels_with_stripe_of_interest.append(towel)
 print(towels_with_stripe_of_interest)
 
+# ** efficiency - remove stripe options that dont include single colour of interest, since can be fulfilled by single towel stripe option
+for towel_input in towel_inputs:
+    flag = False
+    for colour in not_included_towel_colours:
+        if colour in towel:
+            flag = True
+    if flag == False:
+        towel_inputs.remove(towel_input)
+print(towel_input)
+
+
+
 # 3. check stripe options for desired towel: unincluded stripe colour +/- 1 stripe colour, then +/-2, 
 # * for efficiency, remove any of the towel stripe options that dont include the non-included colour, and remove any towels from desired towels that dont included non-included colour.
 
