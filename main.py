@@ -104,20 +104,83 @@ for towel in towels_with_stripe_of_interest:
         print()
         print(towel + ' ' + colour)
         print(index)
-        if index !=-1:            
+        if index != -1:
+            while left_shift<length(towel) and right_shift<length(towel)
+            
+            #one either side
             try:
                 sub_stripe = (towel[index-1:index+1])
+                print(sub_stripe)
+                if substripe in towel_input:
+                    towel=towel[index:]
+                    print('HERE')
+                    
             except:
                 pass
             try: 
-                print(towel[index:index+2])
+                sub_stripe = (towel[index:index+2])
+                print(sub_stripe)
+                if substripe in towel_input:
+                    towel=towel[index:]
+                    print('HERE')
             except:
-                pass                                                    
-                
-   
+                pass     
+            
+            # one both sides
+            try:
+                sub_stripe = (towel[index-1:index+2])
+                print(sub_stripe)
+                if substripe in towel_input:
+                    towel=towel[index:]
+                    print('HERE')
+                    
+            except:
+                pass
+            
+            # two one side, none one side
+            try:
+                sub_stripe = (towel[index-2:index+1])
+                print(sub_stripe)
+                if substripe in towel_input:
+                    towel=towel[index:]
+                    print('HERE')
+                    
+            except:
+                pass
+            
+            try:
+                sub_stripe = (towel[index:index+3])
+                print(sub_stripe)
+                if substripe in towel_input:
+                    towel=towel[index:]
+                    print('HERE')
+                    
+            except:
+                pass
+            
+            # two one side, one one side
+            try:
+                sub_stripe = (towel[index-2:index+2])
+                print(sub_stripe)
+                if substripe in towel_input:
+                    towel=towel[index:]
+                    print('HERE')
+                    
+            except:
+                pass
+            
+            try:
+                sub_stripe = (towel[index-1:index+3])
+                print(sub_stripe)
+                if substripe in towel_input:
+                    towel=towel[index:]
+                    print('HERE')
+                    
+            except:
+                pass
+
 
 # * for efficiency, remove any of the towel stripe options that dont include the non-included colour, and remove any towels from desired towels that dont included non-included colour.
 
 
 print(complete_towel_counter)
-    
