@@ -50,3 +50,16 @@ for towel_input in towel_inputs:
             flag = True
     if flag == True:
         reduced_towel_inputs.append(towel_input)
+
+index_of_incomplete=[]
+
+reduced_desired_towels = []
+for desired_towel in desired_towels:
+    flag = False
+    for colour in individual_stripes_not_included:
+        if colour in desired_towel:
+            flag = True
+    if flag == True:
+        index_of_incomplete.append()
+        reduced_desired_towels.append(desired_towel)
+
