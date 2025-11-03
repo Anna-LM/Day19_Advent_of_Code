@@ -40,3 +40,13 @@ for colour in possible_individual_stripes:
     if colour not in towel_inputs:
         individual_stripes_not_included.append(colour)
 print(individual_stripes_not_included)
+
+reduced_towel_inputs = []
+
+for towel_input in towel_inputs:
+    flag = False
+    for colour in individual_stripes_not_included:
+        if colour in towel_input:
+            flag = True
+    if flag == True:
+        reduced_towel_inputs.append(towel_input)
