@@ -49,7 +49,10 @@ else:
         print(first_part_of_towel_1)  
 
 
-    #if secpnd input in first part of towel 1, then we know we can remove it from beginning of towel 
+        #repeat until:
+            # no more towel inputs to try
+            # or
+            # no more stripes in towel 
 
 
 
