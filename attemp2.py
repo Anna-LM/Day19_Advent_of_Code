@@ -1,3 +1,5 @@
+from functools import cache## -- Read input texts into useful formats --
+
 ## -- Read input texts into useful formats --
 
 #Open file name example.txt
@@ -28,58 +30,39 @@ print(towel_inputs)
 #first_part_of_towel_1 = desired_towels[0][0:len(towel_inputs[0])]
 #print(first_part_of_towel_1)
 
+@cache
 
-towel_input_index = 0
-def is_towel_input_1_in_first_part_of_towel(towel_input_index,towel):
-    if len(towel)>0 and towel_input_index<len(towel_inputs):
-        
-        print ('towel_cut',towel[0:len(towel_inputs[towel_input_index])])
-        if towel[0:len(towel_inputs[towel_input_index])] == towel_inputs[towel_input_index]:
-            towel=towel[len(towel_inputs[towel_input_index]):]
-            print(towel)
-            
-            is_towel_input_1_in_first_part_of_towel(towel_input_index,towel)
-        else:
-            towel_input_index = towel_input_index+1
-            is_towel_input_1_in_first_part_of_towel(towel_input_index,towel)
+def is_towel_input_1_in_first_part_of_towel(desired_towel):
 
+    #repeat until:
+    # no more towel inputs to try
+    # or
+    # no more stripes in towel 
+    
+    # if theres no stripes left in towel
+
+    if not desired_towel:
+        return True
+    #try each towel input for the first part of the of the current desired towel
+    for towel_input in towel_inputs:
+        #if the first part of the input equals the current towel input, then try the rest of the towel input
+        first_part_of_towel_1 = desired_towel[0:len(towel_input)]
+        if first_part_of_towel_1 == towel_input:  
+            #keep the recursion going
+            rest_of_towel = desired_towel[len(towel_input):]
+            if is_towel_input_1_in_first_part_of_towel(rest_of_towel):
+                return True
             
-    print(towel)
-    print('length',len(towel))
-    print('index',towel_input_index)
+    #if every towel input is tried and the remaining stripes/next stripes of the towel doesnt equal an input, it cant be made
+    return False
+
+#count how many complete towels, for each towel tried, and returned true, increase counter
+complete_towel_counter = 0
+for desired_towel in desired_towels:
+    if is_towel_input_1_in_first_part_of_towel(desired_towel):
+        complete_towel_counter = complete_towel_counter+ 1
+
+print(complete_towel_counter)
 
             #try next towel input      
 
-is_towel_input_1_in_first_part_of_towel(towel_input_index,desired_towels[0])
-
-'''
-
-#if first input in first part in towel 1, then we know we can remove that from the beginning of towel
-if first_part_of_towel_1 == towel_inputs[0]:
-    first_part_of_towel_1 = first_part_of_towel_1[0:len(towel_inputs[0])]
-    print(first_part_of_towel_1)
-
-#else try next input in first part of towel 1
-else:
-    first_part_of_towel_1 = desired_towels[0][0:len(towel_inputs[1])]
-    print(first_part_of_towel_1)  
-
-    #if first input in first part in towel 1, then we know we can remove that from the beginning of towel
-    if first_part_of_towel_1 == towel_inputs[0]:
-        first_part_of_towel_1 = first_part_of_towel_1[0:len(towel_inputs[0])]
-        print(first_part_of_towel_1)
-    
-    else:
-        first_part_of_towel_1 = desired_towels[0][0:len(towel_inputs[1])]
-        print(first_part_of_towel_1)  
-
-
-        #repeat until:
-            # no more towel inputs to try
-            # or
-            # no more stripes in towel 
-
-
-
-
-'''
