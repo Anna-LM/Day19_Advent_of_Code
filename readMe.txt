@@ -11,7 +11,8 @@ Process:
 
 
 
-Results:
+Results:    **change the name of the file input in line 6 to reflect which input file
+
     Example Input:
         number of complete towels: 6
         number of ways to complete: 16
