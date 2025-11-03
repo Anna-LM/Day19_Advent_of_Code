@@ -3,7 +3,7 @@ from functools import cache## -- Read input texts into useful formats --
 ## -- Read input texts into useful formats --
 
 #Open file name example.txt
-f = open("example.txt")
+f = open("my_puzzle_input.txt")
 
 #read the first line of the file
 towel_inputs = (f.readline()).strip('\n')
