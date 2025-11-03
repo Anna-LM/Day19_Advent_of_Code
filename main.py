@@ -1,3 +1,5 @@
+from functools import cache## -- Read input texts into useful formats --
+
 ## -- Read input texts into useful formats --
 
 #Open file name example.txt
@@ -20,167 +22,43 @@ desired_towels=desired_towels[1:]
 #close file
 f.close()
 
+print(desired_towels)
+print(towel_inputs)
 
-## -- Create Towel designs --
-complete_towel_counter  = 0
+#check if an input is in the towel, then check if the input is in that new input and so on --> recursion
 
+@cache
 
-# Method 1: *** This method is designed more for if there is finite number of stripes, not indefinate. ***
-# order towel compomnents by size. try and fit in the longer components in first. 
-# order desired towel lengths. see how many characters is left in each desired towel design. fill from shortest. 
-'''
-#order towel inputs by lengths
-towel_inputs = sorted(towel_inputs, key=len, reverse=True)
+def is_towel_input_n_in_next_part_of_desired_towel(desired_towel):
 
-#see if the stripe pattern fits into a desired towel size
-for final_towel in desired_towels:
-
-    used_stripes=[]
-    #iterate through all the towel stripe patters, see if first in shorest towel pattern
-    for stripe_input in towel_inputs:
-        
-        # if the stripe is a substring of the desired towel
-        if stripe_input in final_towel:
+    #repeat until:
+    # no more towel inputs to try
+    # or
+    # no more stripes in towel 
+    
+    # if theres no stripes left in towel, the towel has been completed
+    if not desired_towel:
+        return True
+    
+    #try each towel input for the first/next part of the of the current desired towel
+    for towel_input in towel_inputs:
+        #if the first part of the input equals the current towel input, then try the rest of the towel input
+        first_part_of_towel_n = desired_towel[0:len(towel_input)]
+        if first_part_of_towel_n == towel_input:  
+            #keep the recursion going
+            rest_of_towel_n= desired_towel[len(towel_input):]
+            if is_towel_input_n_in_next_part_of_desired_towel(rest_of_towel_n):
+                return True
             
-            #remove the stripe from final towel design
-            final_towel = final_towel.replace(stripe_input, "")
-            
-            #record which stripes were used
-            used_stripes.append(stripe_input)
+    #if every towel input is tried and the remaining stripes/next stripes of the towel doesnt equal an input, it cant be made
+    return False
 
-    if final_towel.strip('')== '':
-        complete_towel_counter=complete_towel_counter+1
-        
-        #only if the towel was completed remove the stripes from the list of stripes
-        #remove the stripe from the list of stripes
-        towel_inputs.remove(stripe_input)
-
-'''    
-
-# Method 2: *** indefinate number of each stripe available ***
-# i was noticing in the previous method that the remaining stripes in the incomplete towels were ones where there was not that individual stripe. so i am going to readjust my method, and start by noting which individual stripes were not available. then for each towel that involved a stripe of that colour, working backwards and seeing if theres a stripe substring including that letter and the one either side in the desired towel, and then two either side etc. 
-# 1. compare all possible stripes with stripe list from input, see which indicidual colours not included
-
-#all the possible colour stripes
-possible_colours = ['w','u','b','r','g'] 
-
-#make a list of the single colour stripes not included in possible stripes
-not_included_towel_colours=[]
-for colour in possible_colours:
-    if colour not in towel_inputs:
-        not_included_towel_colours.append(colour)
-print(not_included_towel_colours)
-
-# 2. for each desired towel if it includes the indivdal stripe colour not included in the input, then check, if not we know it can be achieved
-towels_with_stripe_of_interest=[]
-for towel in desired_towels:
-    print(towel)
-    for colour in not_included_towel_colours:
-        if colour not in towel:
-            complete_towel_counter=complete_towel_counter+1
-        else:
-            towels_with_stripe_of_interest.append(towel)
-        break
-print(towels_with_stripe_of_interest)
-
-# ** efficiency - remove stripe options that dont include single colour of interest, since can be fulfilled by single towel stripe option
-#           could also remove any longer input strings made up of shorter input strings
-#           each iteration of increading length of checked string, could check for longer strings made of that length substring
-for towel_input in towel_inputs:
-    flag = False
-    for colour in not_included_towel_colours:
-        if colour in towel:
-            flag = True
-    if flag == False:
-        towel_inputs.remove(towel_input)
-print(towel_input)
-
-            
-
-# 3. check stripe options for desired towel: unincluded stripe colour +/- 1 stripe colour, then +/-2, 
-for towel in towels_with_stripe_of_interest:
-    for colour in not_included_towel_colours: 
-        index = towel.find(colour) #only returns first index
-        print()
-        print(towel + ' ' + colour)
-        print(index)
-        if index != -1:
-            while left_shift<length(towel) and right_shift<length(towel)
-            
-            #one either side
-            try:
-                sub_stripe = (towel[index-1:index+1])
-                print(sub_stripe)
-                if substripe in towel_input:
-                    towel=towel[index:]
-                    print('HERE')
-                    
-            except:
-                pass
-            try: 
-                sub_stripe = (towel[index:index+2])
-                print(sub_stripe)
-                if substripe in towel_input:
-                    towel=towel[index:]
-                    print('HERE')
-            except:
-                pass     
-            
-            # one both sides
-            try:
-                sub_stripe = (towel[index-1:index+2])
-                print(sub_stripe)
-                if substripe in towel_input:
-                    towel=towel[index:]
-                    print('HERE')
-                    
-            except:
-                pass
-            
-            # two one side, none one side
-            try:
-                sub_stripe = (towel[index-2:index+1])
-                print(sub_stripe)
-                if substripe in towel_input:
-                    towel=towel[index:]
-                    print('HERE')
-                    
-            except:
-                pass
-            
-            try:
-                sub_stripe = (towel[index:index+3])
-                print(sub_stripe)
-                if substripe in towel_input:
-                    towel=towel[index:]
-                    print('HERE')
-                    
-            except:
-                pass
-            
-            # two one side, one one side
-            try:
-                sub_stripe = (towel[index-2:index+2])
-                print(sub_stripe)
-                if substripe in towel_input:
-                    towel=towel[index:]
-                    print('HERE')
-                    
-            except:
-                pass
-            
-            try:
-                sub_stripe = (towel[index-1:index+3])
-                print(sub_stripe)
-                if substripe in towel_input:
-                    towel=towel[index:]
-                    print('HERE')
-                    
-            except:
-                pass
-
-
-# * for efficiency, remove any of the towel stripe options that dont include the non-included colour, and remove any towels from desired towels that dont included non-included colour.
-
+#count how many complete towels, for each towel tried, and returned true, increase counter
+complete_towel_counter = 0
+for desired_towel in desired_towels:
+    if is_towel_input_n_in_next_part_of_desired_towel(desired_towel):
+        complete_towel_counter = complete_towel_counter+ 1
 
 print(complete_towel_counter)
+     
+
