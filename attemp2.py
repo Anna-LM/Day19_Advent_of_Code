@@ -25,9 +25,34 @@ print(desired_towels)
 print(towel_inputs)
 
 #is towel input 1 in position 1 of towel 1:
-first_part_of_towel_1 = desired_towels[0][0:len(towel_inputs[0])]
-print(first_part_of_towel_1)
+#first_part_of_towel_1 = desired_towels[0][0:len(towel_inputs[0])]
+#print(first_part_of_towel_1)
 
+
+towel_input_index = 0
+def is_towel_input_1_in_first_part_of_towel(towel_input_index,towel):
+    if len(towel)>0 and towel_input_index<len(towel_inputs):
+        
+        print ('towel_cut',towel[0:len(towel_inputs[towel_input_index])])
+        if towel[0:len(towel_inputs[towel_input_index])] == towel_inputs[towel_input_index]:
+            towel=towel[len(towel_inputs[towel_input_index]):]
+            print(towel)
+            
+            is_towel_input_1_in_first_part_of_towel(towel_input_index,towel)
+        else:
+            towel_input_index = towel_input_index+1
+            is_towel_input_1_in_first_part_of_towel(towel_input_index,towel)
+
+            
+    print(towel)
+    print('length',len(towel))
+    print('index',towel_input_index)
+
+            #try next towel input      
+
+is_towel_input_1_in_first_part_of_towel(towel_input_index,desired_towels[0])
+
+'''
 
 #if first input in first part in towel 1, then we know we can remove that from the beginning of towel
 if first_part_of_towel_1 == towel_inputs[0]:
@@ -57,6 +82,4 @@ else:
 
 
 
-
-
-#for towel_input in towel_inputs
+'''
