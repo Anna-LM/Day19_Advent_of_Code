@@ -22,8 +22,8 @@ desired_towels=desired_towels[1:]
 #close file
 f.close()
 
-print(desired_towels)
-print(towel_inputs)
+#print(desired_towels)
+#print(towel_inputs)
 
 #check if an input is in the towel, then check if the input is in that new input and so on --> recursion
 
@@ -51,10 +51,10 @@ def is_towel_input_n_in_next_part_of_desired_towel(desired_towel):
             #keep the recursion going, increase recurrsion_counter
             rest_of_towel_n= desired_towel[len(towel_input):]
             recurrsion_counter = recurrsion_counter+ is_towel_input_n_in_next_part_of_desired_towel(rest_of_towel_n)
+
+    #if the towel cant be made the recussion counter will be 0 from the beginning of th recurssion loop
     return recurrsion_counter
             
-    #if every towel input is tried and the remaining stripes/next stripes of the towel doesnt equal an input, it cant be made
-    return False
 
 #count how many complete towels, for each towel tried, and returned true, increase counter
 complete_towel_counter = 0
@@ -62,11 +62,11 @@ for desired_towel in desired_towels:
     if is_towel_input_n_in_next_part_of_desired_towel(desired_towel):
         complete_towel_counter = complete_towel_counter+ 1
 
-print(complete_towel_counter)
+print('number of complete towels:',complete_towel_counter)
      
 #add up how many times the recurrsion occurs that the towel completes
 total_number_of_designs_counter = 0
 for desired_towel in desired_towels:
     total_number_of_designs_counter = total_number_of_designs_counter+is_towel_input_n_in_next_part_of_desired_towel(desired_towel)
 
-print(total_number_of_designs_counter)
+print('number of ways to complete:',total_number_of_designs_counter)
